@@ -1,0 +1,33 @@
+# Dependencies
+**/node_modules/
+
+# Build output
+**/dist/
+**/build/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Server uploads and runtime files
+server/uploads/*
+!server/uploads/.gitkeep
+**/uploads/*
+!**/uploads/.gitkeep
+*.log
+logs/
+
+# Local databases and dumps
+*.sqlite
+*.sqlite3
+*.db
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
