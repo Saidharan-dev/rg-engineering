@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api/axios';
+import portrait from '../../removed bg coat ganesan.png';
 
 const SERVER = 'http://localhost:3001';
 
@@ -29,13 +30,11 @@ const clients = [
 
 export default function Home() {
   const [featured, setFeatured] = useState([]);
-  const [architects, setArchitects] = useState([]);
 
   useEffect(() => {
     api.get('/projects').then((res) => {
       setFeatured(res.data.filter((p) => p.featured).slice(0, 6));
     }).catch(() => {});
-    api.get('/architects').then((res) => setArchitects(res.data)).catch(() => {});
   }, []);
 
   return (
@@ -72,9 +71,9 @@ export default function Home() {
       {/* ABOUT */}
       <section className="about-section">
         <div className="about-visual fade-in">
-          <div className="about-icon">🏗️</div>
+          <img className="about-portrait" src={portrait} alt="R. Ganesan" />
           <div className="about-visual-title">R. Ganesan</div>
-          <div className="about-visual-text">Chief Structural Consultant & Director. Post Graduate in Structural Engineering from NIT Tiruchirappalli with over three decades of distinguished expertise.</div>
+          <div className="about-visual-text">Chief Structural Consultant &amp; Director. Post Graduate in Structural Engineering from NIT Tiruchirappalli with over three decades of distinguished expertise.</div>
           <div className="about-badges">
             <span className="badge">NIT Trichy Alumni</span>
             <span className="badge">STAAD Pro</span>
@@ -136,24 +135,6 @@ export default function Home() {
                   <div className="project-name">{p.title}</div>
                   {p.architect && <div className="project-arch">{p.architect}</div>}
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* CLIENTS */}
-      {architects.length > 0 && (
-        <section className="architects-section">
-          <div className="fade-in architects-heading">
-            <div className="section-label">Our Network</div>
-            <h2 className="section-title">Our <em>Architects</em></h2>
-          </div>
-          <div className="architect-marquee fade-in">
-            {[...architects, ...architects].map((architect, index) => (
-              <div className="architect-pill" key={`${architect.id}-${index}`}>
-                {architect.logo_url ? <img src={`${SERVER}${architect.logo_url}`} alt="" /> : <span className="architect-pill-initials">{architect.name.slice(0, 2).toUpperCase()}</span>}
-                <span><strong>{architect.name}</strong><small>{architect.location}</small></span>
               </div>
             ))}
           </div>

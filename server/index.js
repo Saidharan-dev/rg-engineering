@@ -1,8 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
+const db = require('./config/db');
 const authRoutes    = require('./routes/auth');
 const projectRoutes = require('./routes/projects');
 const architectRoutes = require('./routes/architects');
@@ -10,6 +12,37 @@ const contactRoutes = require('./routes/contact');
 
 const app  = express();
 const PORT = process.env.PORT || 3001;
+
+async function ensureDefaultAdmin() {
+  try {
+    const [rows] = await db.query(
+      "SELECT id, password_hash FROM admin_users WHERE username = 'admin' LIMIT 1"
+    );
+
+    const correctHash = await bcrypt.hash('admin123', 10);
+
+    if (rows.length === 0) {
+      await db.query(
+        'INSERT INTO admin_users (username, password_hash) VALUES (?, ?)',
+        ['admin', correctHash]
+      );
+      console.log('✅ Default admin user created with password: admin123');
+      return;
+    }
+
+    const isCorrect = await bcrypt.compare('admin123', rows[0].password_hash);
+
+    if (!isCorrect) {
+      await db.query(
+        'UPDATE admin_users SET password_hash = ? WHERE username = ?',
+        [correctHash, 'admin']
+      );
+      console.log('✅ Default admin password reset to: admin123');
+    }
+  } catch (error) {
+    console.error('Admin init failed:', error.message);
+  }
+}
 
 // ── Middleware ─────────────────────────────────────────────
 app.use(cors({
@@ -50,6 +83,8 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Internal server error.' });
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+ensureDefaultAdmin().then(() => {
+  app.listen(PORT, () => {
+    console.log(`✅ Server running on http://localhost:${PORT}`);
+  });
 });

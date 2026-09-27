@@ -57,8 +57,8 @@ CREATE TABLE IF NOT EXISTS admin_users (
 -- bcrypt hash of "admin123"
 -- ============================================
 INSERT INTO admin_users (username, password_hash)
-VALUES ('admin', '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi')
-ON DUPLICATE KEY UPDATE username = username;
+VALUES ('admin', '$2a$10$ZvcTO/RLVaxUtwF4UJL4iulg9XPQN4BeC/R1YiDWwixyTi91PCyHu')
+ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash);
 
 -- ============================================
 -- Seed: sample projects from company profile
