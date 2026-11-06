@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import api from '../api/axios';
 import portrait from '../../removed bg coat ganesan.png';
 
-const SERVER = 'http://localhost:3001';
+const SERVER = '';
 
 const categoryEmoji = {
   institutional: '🏛️', residential: '🏢', commercial: '🏬',

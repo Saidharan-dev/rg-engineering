@@ -6,8 +6,8 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError]     = useState('');
-  const companyAddress = 'No. 64, Nandavanam Street, Zakir Hussain Road, LIC Colony, Trichy 620021, Tamil Nadu';
-  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(companyAddress)}`;
+  const companyAddress = '65, Nandhavanam St, LIC Colony, Ayyappa Nagar, K K Nagar, Tiruchirappalli, Tamil Nadu 620021';
+  const mapUrl = 'https://www.google.com/maps/place/65,+Nandhavanam+St,+LIC+Colony,+Ayyappa+Nagar,+K+K+Nagar,+Tiruchirappalli,+Tamil+Nadu+620021/@10.7626033,78.6811387,17z/data=!3m1!4b1!4m6!3m5!1s0x3baa8ac840508ddb:0xb50ce4460516bd18!8m2!3d10.7626033!4d78.6811387!16s%2Fg%2F11hp15wm5t?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D';
   const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(companyAddress)}&output=embed`;
 
   const handleSubmit = async (e) => {
@@ -39,7 +39,7 @@ export default function Contact() {
 
             <div className="contact-details">
               {[
-                { icon: '📍', label: 'Address', value: 'No. 64, Nandavanam Street, Zakir Hussain Road, LIC Colony, Trichy – 620021, Tamil Nadu' },
+                { icon: '📍', label: 'Address', value: companyAddress },
                 { icon: '📞', label: 'Phone', value: '0431-4024691  |  +91-9842872691' },
                 { icon: '✉️', label: 'Email', value: 'gstruds@yahoo.com\nganesan_struct@rediffmail.com' },
               ].map((item) => (

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import api from '../api/axios';
 
-const SERVER = 'http://localhost:3001';
+const SERVER = '';
 const CATEGORIES = ['institutional', 'residential', 'commercial', 'religious', 'bungalow', 'industrial'];
 const EMPTY_FORM = { name: '', location: '', category: 'institutional' };
 

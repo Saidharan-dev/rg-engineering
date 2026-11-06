@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api/axios';
 
-const SERVER = 'http://localhost:3001';
+const SERVER = '';
 const CATEGORIES = ['all', 'institutional', 'residential', 'commercial', 'religious', 'bungalow', 'industrial'];
 
 const categoryEmoji = {
@@ -44,7 +44,7 @@ export default function Projects() {
         {loading ? (
           <div className="pub-loading">Loading projects...</div>
         ) : (
-          <div className="projects-grid fade-in">
+          <div className="projects-grid ">
             {projects.map((p) => (
               <div className="project-card" key={p.id}>
                 <div className="project-img">

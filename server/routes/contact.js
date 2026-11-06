@@ -4,9 +4,10 @@ const nodemailer = require('nodemailer');
 const db = require('../config/db');
 const verifyToken = require('../middleware/verifyToken');
 
-// Nodemailer transporter
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.titan.email',
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
@@ -58,7 +59,7 @@ router.post('/', async (req, res) => {
         <p><strong>Your message:</strong><br/>${message}</p>
         <br/>
         <p>RG Engineering Excellence Pvt. Ltd.<br/>
-        Trichy, Tamil Nadu<br/>
+        65, Nandhavanam St, LIC Colony, Ayyappa Nagar, K K Nagar, Tiruchirappalli, Tamil Nadu 620021<br/>
         +91-9842872691</p>
       `,
     });
@@ -142,7 +143,7 @@ router.post('/:id/reply', verifyToken, async (req, res) => {
         <p>Warm regards,<br/>
         R. Ganesan<br/>
         RG Engineering Excellence Pvt. Ltd.<br/>
-        Trichy, Tamil Nadu</p>
+        65, Nandhavanam St, LIC Colony, Ayyappa Nagar, K K Nagar, Tiruchirappalli, Tamil Nadu 620021</p>
       `,
     });
 

@@ -3,7 +3,7 @@ import api from '../api/axios';
 
 const CATEGORIES = ['institutional', 'residential', 'commercial', 'religious', 'bungalow', 'industrial'];
 const EMPTY_FORM = { title: '', category: 'institutional', architect: '', description: '', featured: false };
-const SERVER = 'http://localhost:3001';
+const SERVER = '';
 
 export default function Projects() {
   const [projects, setProjects]       = useState([]);
